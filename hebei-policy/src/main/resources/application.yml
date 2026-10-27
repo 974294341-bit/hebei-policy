@@ -1,0 +1,44 @@
+server:
+  port: 8080
+
+spring:
+  profiles:
+    # 默认使用 H2 内存库演示模式，零配置直接启动
+    # 生产/真实数据：改为 mysql，并按下方 mysql 段落配置
+    active: h2demo
+  jackson:
+    time-zone: Asia/Shanghai
+    date-format: yyyy-MM-dd
+
+---
+# ============ H2 演示模式（内置 45 条样例，覆盖全部分类） ============
+spring:
+  config:
+    activate:
+      on-profile: h2demo
+  datasource:
+    url: jdbc:h2:mem:policy;MODE=MySQL;DATABASE_TO_LOWER=TRUE;CASE_INSENSITIVE_IDENTIFIERS=TRUE;DEFAULT_NULL_ORDERING=LOW
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema-h2.sql
+      data-locations: classpath:data-h2.sql
+
+---
+# ============ MySQL 生产模式（导入 policy.sql 后启用） ============
+# 启动：mvn spring-boot:run -Dspring-boot.run.profiles=mysql
+spring:
+  config:
+    activate:
+      on-profile: mysql
+  datasource:
+    url: jdbc:mysql://localhost:3306/policy?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: "123456"   # TODO 改成你的 MySQL 密码
+  sql:
+    init:
+      mode: never

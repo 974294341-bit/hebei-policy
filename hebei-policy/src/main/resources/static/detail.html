@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>政策全文 - 科技政策一点通</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* 全文正文（源自 Word 导出 HTML）基础排版 */
+    .d-content p { text-indent: 2em; }
+    .d-content p[align="center"] { text-indent: 0; font-size: 17px; }
+  </style>
+</head>
+<body>
+  <header class="banner">
+    <div class="banner-inner">
+      <div class="brand">
+        <div class="brand-sub">河北省科学技术情报研究院 · 河北省科技创新战略研究院</div>
+        <h1 class="brand-title">科技政策一点通</h1>
+      </div>
+      <nav class="nav">
+        <a href="index.html">首 页</a>
+        <a href="pctrends.html">政策动态</a>
+        <a href="index.html" class="active">科技政策</a>
+        <a href="unscramble.html">政策解读</a>
+        <a href="questions.html">政策问答</a>
+        <a href="cultivate.html">政策培训</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="detail-wrap">
+    <div class="detail-card">
+      <a class="d-back" href="javascript:history.back()">← 返回列表</a>
+      <h1 class="d-title" id="dTitle">加载中…</h1>
+      <div class="d-meta" id="dMeta" style="display:none"></div>
+      <div class="d-content" id="dContent"></div>
+    </div>
+  </div>
+
+  <footer class="footer">河北省科技政策查询系统 · 数据来源：河北省科学技术情报研究院</footer>
+
+  <script>
+    (function () {
+      var id = new URLSearchParams(location.search).get('id');
+      if (!id) { document.getElementById('dTitle').textContent = '参数错误'; return; }
+
+      fetch('/api/policies/' + id).then(function (r) {
+        if (r.status === 404) throw new Error('政策不存在');
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      }).then(function (p) {
+        document.title = (p.name || '政策全文') + ' - 科技政策一点通';
+        document.getElementById('dTitle').textContent = p.name || '';
+
+        var meta = [];
+        function item(k, v) { return v ? '<b>【' + k + '】</b>' + v + '<br>' : ''; }
+        var html =
+          item('政策分类', p.type) +
+          item('制定机关', p.organ) +
+          item('发文字号', p.document) +
+          item('发文时间', p.viadata) +
+          item('施行日期', p.perdata) +
+          item('施行范围', p.range);
+        var metaEl = document.getElementById('dMeta');
+        if (html) { metaEl.innerHTML = html; metaEl.style.display = 'block'; }
+
+        var c = document.getElementById('dContent');
+        if (p.text) {
+          c.innerHTML = p.text;
+        } else {
+          c.innerHTML = '<div class="d-empty">暂无全文内容</div>';
+        }
+      }).catch(function (e) {
+        document.getElementById('dTitle').textContent = '加载失败';
+        document.getElementById('dContent').innerHTML =
+          '<div class="d-empty">' + e.message + '</div>';
+      });
+    })();
+  </script>
+</body>
+</html>

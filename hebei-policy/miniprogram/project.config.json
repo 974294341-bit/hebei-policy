@@ -1,0 +1,19 @@
+{
+  "description": "河北省科技政策查询小程序（与 PC 端共用后端）",
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "3.3.4",
+  "appid": "wxd8f0b8b0a0000000",
+  "projectname": "hebei-policy",
+  "condition": {}
+}

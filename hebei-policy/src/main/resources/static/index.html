@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>科技政策一点通 - 政策全文</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- ===== 顶部 Banner（参考 kjzc.hebsti.cn/technology 主界面） ===== -->
+  <header class="banner">
+    <div class="banner-inner">
+      <div class="brand">
+        <div class="brand-sub">河北省科学技术情报研究院 · 河北省科技创新战略研究院</div>
+        <h1 class="brand-title">科技政策一点通</h1>
+      </div>
+      <nav class="nav">
+        <a href="index.html">首 页</a>
+        <a href="pctrends.html">政策动态</a>
+        <a href="index.html" class="active">科技政策</a>
+        <a href="unscramble.html">政策解读</a>
+        <a href="questions.html">政策问答</a>
+        <a href="cultivate.html">政策培训</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== 面包屑 ===== -->
+  <div class="crumb-wrap">
+    <div class="crumb">首页 <span>/</span> 科技政策 <span>/</span> <em>政策全文</em></div>
+  </div>
+
+  <!-- ===== 主体：左侧分类树 + 右侧列表 ===== -->
+  <main class="layout">
+    <aside class="side">
+      <div class="side-title">
+        政策分类
+        <a class="side-clear" id="clearTree" href="javascript:void(0)">清空</a>
+      </div>
+      <div class="tree" id="tree"><!-- JS 渲染分类树 --></div>
+    </aside>
+
+    <section class="content">
+      <!-- 搜索 + 筛选 -->
+      <div class="filter-card">
+        <div class="search-row">
+          <input id="kw" class="kw" type="text" placeholder="请输入关键词" />
+          <button id="btnSearch" class="btn-primary">🔍 搜索</button>
+        </div>
+        <div class="filter-row">
+          <span class="f-label">时&nbsp;&nbsp;&nbsp;间：</span>
+          <label><input type="radio" name="time" value="" checked>全部</label>
+          <label><input type="radio" name="time" value="1">近一月</label>
+          <label><input type="radio" name="time" value="2">近半年</label>
+          <label><input type="radio" name="time" value="3">近一年</label>
+          <span class="f-gap"></span>
+          <span class="f-label">制定主体：</span>
+          <label><input type="radio" name="region" value="all" checked>全部</label>
+          <label><input type="radio" name="region" value="country">国家</label>
+          <label><input type="radio" name="region" value="hebei">河北</label>
+          <label><input type="radio" name="region" value="other">外省</label>
+        </div>
+      </div>
+
+      <!-- 政策列表（按实际顺序倒序，每页 10 条） -->
+      <div class="list-card">
+        <ul class="plist" id="plist"></ul>
+        <div class="empty" id="empty" style="display:none">暂无符合条件的政策</div>
+
+        <div class="pager" id="pager">
+          <span class="p-total" id="pTotal">共 0 条</span>
+          <a class="p-btn" id="pPrev" href="javascript:void(0)">上一页</a>
+          <span class="p-nums" id="pNums"></span>
+          <a class="p-btn" id="pNext" href="javascript:void(0)">下一页</a>
+          <span class="p-jump">到第 <input id="pJump" type="number" min="1" value="1"> 页</span>
+          <button class="p-btn p-ok" id="pOk">确定</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">河北省科技政策查询系统 · 数据来源：河北省科学技术情报研究院</footer>
+
+  <script src="js/index.js"></script>
+</body>
+</html>

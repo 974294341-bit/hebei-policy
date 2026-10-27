@@ -1,0 +1,112 @@
+/* 首页样式（深蓝主题） */
+.page { padding-bottom: 30rpx; }
+
+/* ===== Banner ===== */
+.banner {
+  background: linear-gradient(150deg, #0b2e6e 0%, #1454a8 60%, #1e6fd4 100%);
+  padding: 40rpx 30rpx 30rpx;
+  color: #fff;
+}
+.banner-title { font-size: 44rpx; font-weight: bold; letter-spacing: 4rpx; }
+.banner-sub {
+  display: inline-block; margin-top: 10rpx; font-size: 26rpx;
+  background: rgba(255, 255, 255, .18); border-radius: 8rpx; padding: 4rpx 16rpx;
+  letter-spacing: 2rpx;
+}
+
+/* 搜索框 */
+.search-box {
+  margin-top: 26rpx; display: flex; align-items: center;
+  background: #fff; border-radius: 40rpx; overflow: hidden;
+}
+.search-input {
+  flex: 1; height: 72rpx; padding: 0 30rpx; font-size: 28rpx; color: #333;
+}
+.ph { color: #b0b8c4; }
+.search-btn {
+  height: 72rpx; line-height: 72rpx; padding: 0 34rpx;
+  background: #1e6fd4; color: #fff; font-size: 28rpx;
+}
+
+/* tabs */
+.tabs { display: flex; align-items: center; margin-top: 24rpx; gap: 16rpx; flex-wrap: wrap; }
+.tab {
+  padding: 10rpx 30rpx; border-radius: 32rpx; font-size: 26rpx;
+  background: rgba(255, 255, 255, .14); color: rgba(255, 255, 255, .85);
+}
+.tab-on { background: #fff; color: #1454a8; font-weight: bold; }
+.cats-btn {
+  margin-left: auto; padding: 10rpx 26rpx; border-radius: 32rpx; font-size: 26rpx;
+  border: 1rpx solid rgba(255, 255, 255, .5); color: #fff;
+}
+.cats-on { background: #ffb400; border-color: #ffb400; color: #fff; font-weight: bold; }
+
+/* ===== 分类树面板 ===== */
+.cat-panel {
+  position: fixed; left: 0; right: 0; bottom: -1100rpx; z-index: 30;
+  background: #fff; border-radius: 24rpx 24rpx 0 0;
+  transition: bottom .25s ease;
+}
+.cat-show { bottom: 0; }
+.cat-scroll { max-height: 760rpx; padding: 24rpx 26rpx 10rpx; box-sizing: border-box; }
+.cat-row { display: flex; align-items: center; padding: 16rpx 6rpx; }
+.cat-lv2 { margin-left: 56rpx; }
+.cat-label { flex: 1; font-size: 28rpx; color: #444; display: flex; align-items: center; gap: 12rpx; }
+.cat-open .cat-label { color: #1454a8; font-weight: bold; }
+.cnt { color: #aaa; font-size: 22rpx; font-weight: normal; }
+.caret { color: #999; font-size: 20rpx; transition: transform .2s; padding: 10rpx; }
+.caret-open { transform: rotate(90deg); }
+.chk {
+  width: 30rpx; height: 30rpx; border-radius: 6rpx; border: 2rpx solid #c4cddb;
+  box-sizing: border-box; display: inline-block; position: relative;
+}
+.chk-on { background: #1454a8; border-color: #1454a8; }
+.chk-on::after {
+  content: ''; position: absolute; left: 9rpx; top: 3rpx;
+  width: 10rpx; height: 16rpx; border: 2rpx solid #fff; border-top: 0; border-left: 0;
+  transform: rotate(40deg);
+}
+.cat-foot {
+  display: flex; border-top: 1rpx solid #eef1f6; padding: 18rpx 26rpx calc(18rpx + env(safe-area-inset-bottom));
+  gap: 20rpx;
+}
+.cat-reset, .cat-ok {
+  flex: 1; text-align: center; padding: 18rpx 0; border-radius: 40rpx; font-size: 28rpx;
+}
+.cat-reset { background: #f2f5fa; color: #666; }
+.cat-ok { background: #1454a8; color: #fff; font-weight: bold; }
+.mask {
+  position: fixed; inset: 0; background: rgba(0, 0, 0, .45); z-index: 20;
+  opacity: 0; visibility: hidden; transition: opacity .25s;
+}
+.mask-show { opacity: 1; visibility: visible; }
+
+/* ===== 统计条 ===== */
+.total-bar {
+  margin: 20rpx 30rpx 0; font-size: 24rpx; color: #8a94a6;
+}
+
+/* ===== 卡片列表 ===== */
+.cards { padding: 16rpx 30rpx; }
+.card {
+  background: #fff; border-radius: 16rpx; padding: 26rpx 28rpx;
+  margin-bottom: 18rpx; box-shadow: 0 2rpx 10rpx rgba(20, 60, 130, .06);
+}
+.card-name {
+  font-size: 29rpx; line-height: 1.55; color: #222;
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.card:active .card-name { color: #1454a8; }
+.card-meta { margin-top: 16rpx; display: flex; align-items: center; }
+.tag {
+  font-size: 20rpx; padding: 3rpx 14rpx; border-radius: 20rpx; margin-right: 14rpx;
+}
+.tag-n { background: #eef4ff; color: #3b6fc4; border: 1rpx solid #dbe7fb; }
+.tag-h { background: #fff5e6; color: #c77c12; border: 1rpx solid #ffe3b3; }
+.tag-o { background: #f0faf1; color: #3d9a4d; border: 1rpx solid #d4eed8; }
+.date { font-size: 24rpx; color: #9aa3b2; }
+
+.empty, .loading, .nomore {
+  text-align: center; color: #a5aebc; font-size: 26rpx; padding: 50rpx 0;
+}

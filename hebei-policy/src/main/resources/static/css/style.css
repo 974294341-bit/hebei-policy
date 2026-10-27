@@ -1,0 +1,204 @@
+/* ===== 河北省科技政策查询系统 PC 端样式（参考科技政策一点通主界面） ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+  background: #f2f5fa;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+a { text-decoration: none; color: inherit; }
+
+/* ===== Banner ===== */
+.banner {
+  background: linear-gradient(120deg, #0b2e6e 0%, #1454a8 55%, #1e6fd4 100%);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(13, 46, 110, .35);
+}
+.banner-inner { max-width: 1200px; margin: 0 auto; padding: 26px 16px 0; }
+.brand-sub { font-size: 13px; opacity: .85; letter-spacing: 1px; }
+.brand-title {
+  font-size: 40px; letter-spacing: 6px; margin-top: 6px;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, .25);
+}
+.nav { display: flex; gap: 34px; margin-top: 20px; font-size: 16px; }
+.nav a { padding: 8px 2px 12px; opacity: .9; }
+.nav a:hover { opacity: 1; }
+.nav a.active {
+  font-weight: bold; opacity: 1;
+  border-bottom: 3px solid #fff;
+}
+
+/* ===== 面包屑 ===== */
+.crumb-wrap { background: #fff; border-bottom: 1px solid #e8ecf3; }
+.crumb {
+  max-width: 1200px; margin: 0 auto; padding: 10px 16px;
+  font-size: 13px; color: #888;
+}
+.crumb span { margin: 0 6px; color: #ccc; }
+.crumb em { font-style: normal; color: #1454a8; }
+
+/* ===== 布局 ===== */
+.layout {
+  max-width: 1200px; margin: 16px auto 24px; padding: 0 16px;
+  display: flex; gap: 16px; flex: 1; align-items: flex-start;
+}
+
+/* ===== 左侧分类树 ===== */
+.side {
+  width: 250px; flex-shrink: 0;
+  background: #fff; border-radius: 8px;
+  border: 1px solid #e8ecf3;
+}
+.side-title {
+  padding: 12px 14px; font-size: 15px; font-weight: bold; color: #1454a8;
+  border-bottom: 1px solid #eef1f6;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.side-clear { font-size: 12px; font-weight: normal; color: #999; }
+.side-clear:hover { color: #e53935; }
+.tree { padding: 8px 6px 14px; max-height: 720px; overflow: auto; }
+.t-node { }
+.t-row {
+  display: flex; align-items: center; gap: 5px;
+  padding: 6px 8px; border-radius: 6px; cursor: pointer;
+  font-size: 13.5px; color: #444; line-height: 1.35;
+}
+.t-row:hover { background: #f0f6ff; }
+.t-row.selected { background: #e8f1ff; color: #1454a8; font-weight: bold; }
+.t-caret {
+  width: 14px; flex-shrink: 0; text-align: center; color: #999;
+  font-size: 10px; transition: transform .15s;
+}
+.t-caret.open { transform: rotate(90deg); }
+.t-caret.hidden { visibility: hidden; }
+.t-count { color: #aaa; font-size: 11px; margin-left: 2px; }
+.t-children { margin-left: 20px; display: none; }
+.t-children.open { display: block; }
+.t-check {
+  width: 14px; height: 14px; accent-color: #1454a8; cursor: pointer; flex-shrink: 0;
+}
+
+/* ===== 右侧内容 ===== */
+.content { flex: 1; min-width: 0; }
+.filter-card, .list-card {
+  background: #fff; border-radius: 8px; border: 1px solid #e8ecf3;
+}
+.filter-card { padding: 16px 18px; }
+.search-row { display: flex; gap: 10px; }
+.kw {
+  flex: 1; height: 40px; border: 1px solid #d7dee9; border-radius: 6px;
+  padding: 0 14px; font-size: 14px; outline: none;
+}
+.kw:focus { border-color: #1454a8; }
+.btn-primary {
+  height: 40px; padding: 0 22px; border: none; border-radius: 6px;
+  background: #1454a8; color: #fff; font-size: 14px; cursor: pointer;
+}
+.btn-primary:hover { background: #0d47a1; }
+.filter-row {
+  margin-top: 14px; display: flex; align-items: center; flex-wrap: wrap;
+  gap: 6px 14px; font-size: 13px; color: #555;
+}
+.filter-row label { display: inline-flex; align-items: center; gap: 4px; cursor: pointer; }
+.filter-row input { accent-color: #1454a8; }
+.f-label { color: #888; }
+.f-gap { flex: 1; }
+
+/* ===== 列表 ===== */
+.list-card { margin-top: 14px; padding: 10px 18px 16px; }
+.plist { list-style: none; }
+.plist li {
+  display: flex; align-items: baseline; gap: 8px;
+  padding: 13px 2px; border-bottom: 1px dashed #eef1f6;
+}
+.plist li:last-child { border-bottom: none; }
+.p-dot { color: #1454a8; font-size: 12px; flex-shrink: 0; }
+.p-title {
+  flex: 1; min-width: 0; font-size: 14.5px; color: #333;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.p-title:hover { color: #1454a8; cursor: pointer; }
+.p-tag {
+  flex-shrink: 0; font-size: 11px; padding: 1px 7px; border-radius: 9px;
+  background: #eef4ff; color: #3b6fc4; border: 1px solid #dbe7fb;
+}
+.p-date { flex-shrink: 0; color: #999; font-size: 13px; }
+.empty { text-align: center; color: #aaa; padding: 60px 0; font-size: 14px; }
+
+/* ===== 分页 ===== */
+.pager {
+  display: flex; align-items: center; justify-content: center; flex-wrap: wrap;
+  gap: 8px; padding: 18px 0 6px; font-size: 13px; color: #666;
+}
+.p-btn {
+  padding: 5px 12px; border: 1px solid #d7dee9; border-radius: 4px;
+  background: #fff; color: #555; cursor: pointer;
+}
+.p-btn:hover { border-color: #1454a8; color: #1454a8; }
+.p-btn.disabled { color: #ccc; cursor: not-allowed; border-color: #eee; }
+.p-nums { display: flex; gap: 6px; align-items: center; }
+.p-num {
+  min-width: 30px; text-align: center; padding: 5px 8px;
+  border: 1px solid #d7dee9; border-radius: 4px; cursor: pointer; background: #fff;
+}
+.p-num.cur { background: #1454a8; border-color: #1454a8; color: #fff; }
+.p-ellipsis { color: #999; padding: 0 2px; }
+.p-jump input {
+  width: 52px; height: 28px; border: 1px solid #d7dee9; border-radius: 4px;
+  text-align: center; margin: 0 4px; outline: none;
+}
+.p-ok { background: #1454a8; color: #fff; border-color: #1454a8; }
+.p-ok:hover { background: #0d47a1; color: #fff; }
+.p-total { margin-right: 6px; }
+
+/* ===== 页脚 ===== */
+.footer {
+  text-align: center; padding: 18px 0; font-size: 12px; color: #a5aebc;
+  background: transparent;
+}
+
+/* ===== 详情页 ===== */
+.detail-wrap {
+  max-width: 900px; margin: 20px auto 40px; padding: 0 16px; flex: 1;
+  width: 100%;
+}
+.detail-card {
+  background: #fff; border-radius: 8px; border: 1px solid #e8ecf3;
+  padding: 40px 48px 48px;
+}
+.d-back { font-size: 13px; color: #1454a8; margin-bottom: 14px; display: inline-block; }
+.d-title {
+  text-align: center; font-size: 22px; line-height: 1.6; color: #222;
+  margin-bottom: 18px;
+}
+.d-meta {
+  background: #f7f9fd; border: 1px solid #eef1f6; border-radius: 6px;
+  padding: 12px 18px; font-size: 13px; color: #666; line-height: 2;
+  margin-bottom: 24px;
+}
+.d-meta b { color: #1454a8; font-weight: normal; }
+.d-content { font-size: 15px; line-height: 2; color: #333; word-break: break-word; }
+.d-content p { margin: 10px 0; }
+.d-content img { max-width: 100%; }
+.d-empty { text-align: center; color: #aaa; padding: 40px 0; }
+
+/* ===== 模块页（政策动态/政策解读/政策问答/政策培训） ===== */
+.side-links { padding: 8px 6px 14px; }
+.side-links a {
+  display: block; padding: 10px 10px; border-radius: 6px;
+  font-size: 13.5px; color: #444; line-height: 1.35;
+}
+.side-links a:hover { background: #f0f6ff; }
+.side-links a.active { background: #e8f1ff; color: #1454a8; font-weight: bold; }
+.module-card { padding: 60px 24px; text-align: center; }
+.module-icon { font-size: 52px; margin-bottom: 10px; }
+.module-empty h2 { font-size: 20px; color: #333; margin-bottom: 10px; }
+.module-empty p { font-size: 14px; color: #999; margin-bottom: 26px; line-height: 1.8; }
+
+@media (max-width: 900px) {
+  .layout { flex-direction: column; }
+  .side { width: 100%; }
+  .tree { max-height: 300px; }
+}

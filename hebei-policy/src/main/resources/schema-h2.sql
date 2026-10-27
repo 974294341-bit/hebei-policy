@@ -1,0 +1,32 @@
+-- H2 演示库表结构（与 MySQL 版 policy 表字段一致）
+DROP TABLE IF EXISTS policy;
+CREATE TABLE policy (
+  id          BIGINT       NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  name        VARCHAR(255) NULL,
+  type        VARCHAR(255) NULL,
+  category    VARCHAR(255) NULL,
+  `range`     VARCHAR(255) NULL,
+  document    VARCHAR(255) NULL,
+  form        VARCHAR(255) NULL,
+  organ       VARCHAR(255) NULL,
+  viadata     DATE         NULL,
+  pubdata     DATE         NULL,
+  perdata     DATE         NULL,
+  field       VARCHAR(255) NULL,
+  theme       VARCHAR(255) NULL,
+  keyword     VARCHAR(255) NULL,
+  superior    VARCHAR(255) NULL,
+  precursor   VARCHAR(255) NULL,
+  succeed     VARCHAR(255) NULL,
+  state       VARCHAR(255) NULL,
+  text        CLOB         NULL,
+  pdf         VARCHAR(255) NULL,
+  redundancy  VARCHAR(255) NULL,
+  `rank`      VARCHAR(255) NULL,
+  policykey   CLOB         NULL,
+  newrank     VARCHAR(255) NULL,
+  `year`      VARCHAR(255) NULL,
+  newkey      VARCHAR(255) NULL,
+  secondtheme VARCHAR(255) NULL,
+  allsum      INT          NULL
+);

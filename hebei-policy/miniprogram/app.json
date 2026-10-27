@@ -1,0 +1,15 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/detail/detail"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#0b2e6e",
+    "navigationBarTitleText": "科技政策一点通",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f2f5fa",
+    "backgroundTextStyle": "dark"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

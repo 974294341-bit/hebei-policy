@@ -1,0 +1,79 @@
+<!-- 首页：政策全文（深蓝主题，参考 kjzc.hebsti.cn 移动端） -->
+<view class="page">
+
+  <!-- Banner -->
+  <view class="banner">
+    <view class="banner-title">科技政策一点通</view>
+    <view class="banner-sub">政策全文</view>
+
+    <!-- 搜索框 -->
+    <view class="search-box">
+      <input class="search-input" placeholder="请输入关键词" placeholder-class="ph"
+             value="{{keyword}}" bindinput="onKwInput" bindconfirm="onSearch" confirm-type="search" />
+      <view class="search-btn" bindtap="onSearch">搜索</view>
+    </view>
+
+    <!-- 制定主体 tabs -->
+    <view class="tabs">
+      <view wx:for="{{regionTabs}}" wx:key="key"
+            class="tab {{region === item.key ? 'tab-on' : ''}}"
+            data-key="{{item.key}}" bindtap="onRegionTap">{{item.label}}</view>
+      <view class="cats-btn {{selectedTypes.length ? 'cats-on' : ''}}" bindtap="toggleCats">
+        分类{{selectedTypes.length ? '(' + selectedTypes.length + ')' : ''}} ▾
+      </view>
+    </view>
+  </view>
+
+  <!-- 分类树面板 -->
+  <view class="cat-panel {{showCats ? 'cat-show' : ''}}">
+    <scroll-view scroll-y class="cat-scroll">
+      <block wx:for="{{cats}}" wx:key="name">
+        <view class="cat-row cat-lv1 {{expanded[item.name] ? 'cat-open' : ''}}">
+          <view class="cat-label" data-name="{{item.name}}" bindtap="onCheckCat">
+            <text class="chk {{selectedTypes.indexOf(item.name) >= 0 ? 'chk-on' : ''}}"></text>
+            {{item.name}}
+            <text class="cnt">({{item.count}})</text>
+          </view>
+          <view wx:if="{{item.children}}" class="caret {{expanded[item.name] ? 'caret-open' : ''}}"
+                data-name="{{item.name}}" bindtap="toggleExpand">▶</view>
+        </view>
+        <block wx:if="{{item.children && expanded[item.name]}}">
+          <view wx:for="{{item.children}}" wx:for-item="child" wx:key="name" class="cat-row cat-lv2">
+            <view class="cat-label" data-name="{{child.name}}" bindtap="onCheckCat">
+              <text class="chk {{selectedTypes.indexOf(child.name) >= 0 ? 'chk-on' : ''}}"></text>
+              {{child.name}}
+              <text class="cnt">({{child.count}})</text>
+            </view>
+          </view>
+        </block>
+      </block>
+    </scroll-view>
+    <view class="cat-foot">
+      <view class="cat-reset" bindtap="resetCats">清空</view>
+      <view class="cat-ok" bindtap="confirmCats">确定</view>
+    </view>
+  </view>
+  <view class="mask {{showCats ? 'mask-show' : ''}}" bindtap="toggleCats"></view>
+
+  <!-- 统计 -->
+  <view class="total-bar">共 {{total}} 条 · 按发文时间倒序</view>
+
+  <!-- 政策卡片列表（每页 10 条，触底加载） -->
+  <view class="cards">
+    <view class="card" wx:for="{{list}}" wx:key="id"
+          data-id="{{item.id}}" bindtap="goDetail">
+      <view class="card-name">{{item.name}}</view>
+      <view class="card-meta">
+        <text class="tag {{item.range.indexOf('000000') >= 0 ? 'tag-n' : (item.range.indexOf('130000') >= 0 ? 'tag-h' : 'tag-o')}}">
+          {{item.range.indexOf('000000') >= 0 ? '国家' : (item.range.indexOf('130000') >= 0 ? '河北' : '外省')}}
+        </text>
+        <text class="date">{{item.viadata}}</text>
+      </view>
+    </view>
+
+    <view wx:if="{{!list.length && !loading}}" class="empty">暂无符合条件的政策</view>
+    <view wx:if="{{loading}}" class="loading">加载中…</view>
+    <view wx:if="{{list.length && !hasMore}}" class="nomore">— 没有更多了 —</view>
+  </view>
+
+</view>

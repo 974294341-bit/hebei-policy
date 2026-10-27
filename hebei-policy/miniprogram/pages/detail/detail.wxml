@@ -1,0 +1,30 @@
+<view class="page">
+  <view wx:if="{{loading}}" class="tip">加载中…</view>
+
+  <block wx:elif="{{policy}}">
+    <!-- 标题 -->
+    <view class="d-head">
+      <view class="d-title">{{policy.name}}</view>
+      <view class="d-tags">
+        <text wx:if="{{policy.type}}" class="d-tag">{{policy.type}}</text>
+        <text wx:if="{{policy.viadata}}" class="d-date">{{policy.viadata}}</text>
+      </view>
+    </view>
+
+    <!-- 元数据 -->
+    <view class="d-meta" wx:if="{{meta.length}}">
+      <view class="m-row" wx:for="{{meta}}" wx:key="k">
+        <text class="m-k">{{item.k}}</text>
+        <text class="m-v">{{item.v}}</text>
+      </view>
+    </view>
+
+    <!-- 全文（后端返回 Word 转换的 HTML，rich-text 直接渲染） -->
+    <view class="d-body">
+      <rich-text wx:if="{{policy.text}}" nodes="{{policy.text}}"></rich-text>
+      <view wx:else class="d-empty" bindtap="copyName">暂无全文内容，点击复制政策名称</view>
+    </view>
+  </block>
+
+  <view wx:else class="tip">政策不存在或加载失败</view>
+</view>
