@@ -103,14 +103,19 @@ mvn spring-boot:run
 
 ## 五、微信小程序（手机端）配置
 
-1. 用**微信开发者工具** → 导入项目 → 目录选 `hebei-policy/miniprogram`（AppID 可先用测试号）。
+1. 用**微信开发者工具** → 导入项目 → 目录选 `hebei-policy/miniprogram`。
+   - AppID 已设为 `touristappid`（游客/测试号模式），导入时直接可编译；
+     若你有自己的小程序 AppID，在 `project.config.json` 改 `appid` 即可。
 2. 修改 `miniprogram/config/config.js` 的 `BASE_URL`：
    - 开发者工具本机调试：`http://localhost:8080`，并在「详情 → 本地设置」勾选
      **「不校验合法域名、web-view（业务域名）、TLS 版本以及 HTTPS 证书」**；
-   - 真机预览：改成电脑局域网 IP（如 `http://192.168.1.100:8080`），手机与电脑同一 WiFi；
+   - 真机预览：改成电脑局域网 IP（当前默认 `http://10.99.124.160:8080`，
+     请按实际 `ipconfig` 里的 WLAN IPv4 修改），手机与电脑同一 WiFi；
    - 正式上线：需 HTTPS 域名并在微信公众平台配置 request 合法域名。
 3. 编译运行：首页（搜索 / 全部-国家-河北-外省 / 分类树筛选 / 卡片列表每页 10 条触底加载），
    点卡片进详情（元数据 + rich-text 全文）。
+4. **真机预览**：点开发者工具顶部「真机预览」生成二维码，手机微信扫码即可打开
+   （无需发布，适合给客户演示；后端需保持运行且手机与电脑同一 WiFi）。
 
 ## 六、REST API 文档（PC 与小程序共用）
 
